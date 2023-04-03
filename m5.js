@@ -6,8 +6,9 @@ const fetchData = async (url) => {
     req.open("GET", url); // open channel
     req.send(); // send request
     const resp = await req.response;
+    const resp2 = JSON.parse(resp);
     console.log(req);
-    return resp;
+    return resp2;
   } catch (error) {
     console.log(error);
     return error;
