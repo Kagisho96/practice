@@ -7,7 +7,7 @@ const fetchData = async (url) => {
     req.send(); // send request
     const resp = await req.response;
     console.log(req);
-    return resp2;
+    return resp;
   } catch (error) {
     console.log(error);
     return error;
