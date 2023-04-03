@@ -31,8 +31,18 @@ change the lessons array to the following
           description:'',
           outcomes:['','','']
         },
-        ...,
-        ...
+       {
+          topic:'Module 2',
+          id:1,
+          description:'',
+          outcomes:['','','']
+        },
+       {
+          topic:'Module 3',
+          id:1,
+          description:'',
+          outcomes:['','','']
+        },
       ] 
 ```
 

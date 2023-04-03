@@ -6,6 +6,7 @@ const fetchData = async (url) => {
     req.open("GET", url); // open channel
     req.send(); // send request
     const resp = await req.response;
+    // const resp2 = JSON.parse(resp);
     console.log(req);
     return resp;
   } catch (error) {
@@ -19,3 +20,28 @@ fetchData(url)
     console.log(data);
   })
   .catch((error) => console.log(error));
+
+
+  // const eventsContainer = document.getElementById("lessons");
+  // events.map(function (event) {
+  //   eventsContainer.innerHTML += `
+  //   ${lessons}
+  // `;
+  // });
+  
+
+  const request = new XMLHttpRequest();
+
+try {
+  request.open('GET', 'http://localhost:4377/');
+
+  request.responseType = 'json';
+
+  request.addEventListener('load', () => initialize(request.response));
+  request.addEventListener('error', () => console.error('XHR error'));
+
+  request.send();
+
+} catch (error) {
+  console.error(`XHR error ${request.status}`);
+}
