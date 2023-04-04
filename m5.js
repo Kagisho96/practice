@@ -1,46 +1,34 @@
+
+
 const url = "http://localhost:4377/";
-// const reQ = new Promise(rej);
-const fetchData = async (url) => {
+const getData = document.getElementById("lessons")
+
+
+const fetchData = async () => {
   const req = new XMLHttpRequest();
+  req.open("GET", "http://localhost:4377/", true);
+
   try {
-    req.open("GET", url); // open channel
-    req.send(); // send request
-    const resp = await req.response;
-    console.log(req);
-    return resp;
-  } catch (error) {
-    console.log(error);
-    return error;
+    req.send();
+    req.responseType = 'json'; // assign response type to json
+    req.onreadystatechange = () => { 
+    if(req.readyState === 4){ // readyState 4 is done/request finished/response is ready
+      console.log(req.response)
+      let data = req.response
+      Object.values(data.lessons).map((e) => {
+        getData.appendChild(
+        Object.assign(document.createElement("p"),{
+          innerText: e.id + " " + e.topic + " " +  e.description 
+        }))
+      })
+     
+      return data
+    }
   }
+  } catch (error) {
+    return error
+  }
+
 };
 
-fetchData(url)
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => console.log(error));
-
-
-  // const eventsContainer = document.getElementById("lessons");
-  // events.map(function (event) {
-  //   eventsContainer.innerHTML += `
-  //   ${lessons}
-  // `;
-  // });
-  
-
-  const request = new XMLHttpRequest();
-
-try {
-  request.open('GET', 'http://localhost:4377/');
-
-  request.responseType = 'json';
-
-  request.addEventListener('load', () => initialize(request.response));
-  request.addEventListener('error', () => console.error('XHR error'));
-
-  request.send();
-
-} catch (error) {
-  console.error(`XHR error ${request.status}`);
-}
+fetchData()
