@@ -15,10 +15,10 @@ const fetchData = async () => {
     if(req.readyState === 4){ // readyState 4 is done/request finished/response is ready
       console.log(req.response)
       let data = req.response
-      Object.values(data.lessons).map((e) => {
+      Object.values(data.POPULATION).map((e) => {
         getData.appendChild(
         Object.assign(document.createElement("p"),{
-          innerText: e.id + " " + e.topic + " " +  e.description 
+          innerText: e.country + " " + e.population + " " 
         }))
       })
      
